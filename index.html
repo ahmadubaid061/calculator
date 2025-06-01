@@ -138,15 +138,20 @@
         function adjustFontSize() {
             const length = display.value.length;
 
-            if (length <= 7) {
+            if (length <= 5) {
                 display.style.fontSize = '5rem';
-            } else if (length > 7 && length <= 20) {
+            } else if (length > 5 && length <= 12) {
                 display.style.fontSize = '2rem';
-            } else if (length > 20 && length <= 25) {
+            } else if (length > 12 && length <= 17) {
                 display.style.fontSize = '1.5rem';
-            } else if (length > 25 && length <=30) {
+            } else if (length > 17 && length <=22) {
                 display.style.fontSize = '1rem';
-            } else {
+            } 
+            else if(length > 22 && length <=30)
+            {
+                display.style.fontSize='1.6rem';
+            }
+            else {
                 display.value = 'Error: Max length 30';
                 display.style.fontSize = '1.5rem';
             }
