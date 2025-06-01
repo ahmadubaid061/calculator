@@ -17,10 +17,11 @@
                 font-family: Arial, sans-serif;
                 background-color: hsl(0, 0%, 15%);
                 border-radius: 15px;
-                max-width: 400px;
-                /* min-width: 400px; */
+                width: 400px;
+                min-width: 280px; 
                 height: 90vh;
                 overflow: hidden;
+                box-sizing: border-box;
             }
             #display{
                 height: 20%;
@@ -33,6 +34,7 @@
                 color: white;
                 overflow-x: auto;
                 white-space: nowrap;
+                box-sizing: border-box;
             }
             #keys{
                 height: 70%;
@@ -42,6 +44,7 @@
                 padding: 15px;
                 padding-left: 25px;
                 padding-bottom: 10px;
+                box-sizing: border-box;
             }
             button{
                 width: 60px;
@@ -104,44 +107,50 @@
         </div>
     </div>
 
-    <script>
-            const display = document.querySelector('#display');
+   <script>
+        const display = document.querySelector('#display');
 
-            function appendToDisplay(input) {
+        function appendToDisplay(input) {
+            if (display.value.length < 40) { 
                 display.value += input;
-                adjustFontSize();  // Add this
+                adjustFontSize();
+            } else {
+                display.value = 'Error: Max length 40';
+                display.style.fontSize = '1.5rem'; 
             }
+        }
 
-            function clearDisplay() {
-                display.value = "";
-                adjustFontSize();  // Add this
-            }
+        function clearDisplay() {
+            display.value = "";
+            display.style.fontSize = '5rem'; 
+        }
 
-            function calculate() {
-                try {
-                    display.value = eval(display.value);
-                } catch (error) {
-                    display.value = "Error";
-                }
-                adjustFontSize();  // Add this
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+                adjustFontSize();
+            } catch (error) {
+                display.value = "Error";
+                display.style.fontSize = '1.5rem'; 
             }
+        }
 
-            function adjustFontSize() {
-                const display = document.querySelector('#display');
-                let length = display.value.length;
-            
-                if (length > 10&& length<=20) {
-                display.style.fontSize = '20px';
-                } 
-                else if(length>20)
-                {
-                    display.style.fontSize = '10px';
-                }
-                else {
-                display.style.fontSize = '30px';
-                }
+        function adjustFontSize() {
+            const length = display.value.length;
+
+            if (length <= 7) {
+                display.style.fontSize = '5rem';
+            } else if (length > 7 && length <= 20) {
+                display.style.fontSize = '2rem';
+            } else if (length > 20 && length <= 25) {
+                display.style.fontSize = '1.5rem';
+            } else if (length > 25 && length <=30) {
+                display.style.fontSize = '1rem';
+            } else {
+                display.value = 'Error: Max length 30';
+                display.style.fontSize = '1.5rem';
             }
-            
+        }
     </script>
 </body>
 </html>
